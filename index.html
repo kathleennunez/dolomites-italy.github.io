@@ -1,1 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dolomites, Italy | Serene Alpine Modernism</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    :root {
+      --cream: #fff7f0;
+      --rose: #f6d6e0;
+      --rose-bold: #d986b0;
+      --mid: #7a4c5c;
+      --ink: #2e1f27;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(160deg, #fffaf5, #ffe9f2, #fde4ec);
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(214, 159, 181, 0.35);
+      box-shadow: 0 20px 45px rgba(214, 138, 168, 0.15);
+      border-radius: 28px;
+      backdrop-filter: blur(22px);
+    }
+
+    .accent-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: linear-gradient(120deg, var(--rose), var(--cream));
+      border: 1px dashed rgba(122, 76, 92, 0.35);
+    }
+
+    header.hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 3rem 0;
+      background: url("https://cdn.britannica.com/00/188300-050-972ACBFB/Dolomites-Italian-Alps.jpg") center/cover;
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(150deg, rgba(255, 247, 240, 0.35), rgba(46, 31, 39, 0.25));
+    }
+
+    .hero-content {
+      position: relative;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      z-index: 1;
+      max-width: 460px;
+    }
+
+    .hero-panel {
+      background: rgba(255, 247, 240, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 26px;
+      box-shadow: 0 25px 45px rgba(46, 31, 39, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--ink);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero p.lead {
+      color: rgba(46, 31, 39, 0.75);
+      font-size: 1rem;
+    }
+
+    .btn-rose {
+      background: var(--ink);
+      border: none;
+      color: #fff;
+      padding: 0.85rem 1.8rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-rose-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 0.85rem 1.8rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(122, 76, 92, 0.15);
+      border-radius: 22px;
+      padding: 2rem;
+      height: 100%;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 35px rgba(214, 138, 168, 0.25);
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: var(--rose);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.3rem;
+      font-size: 1.4rem;
+    }
+
+    .impressions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.3rem;
+    }
+
+    .photo-card {
+      border-radius: 24px;
+      height: 320px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 35px rgba(214, 138, 168, 0.25);
+    }
+
+    .photo-card::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 1.2rem;
+      bottom: 1.2rem;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 1rem;
+      width: 2px;
+      background: linear-gradient(var(--rose-bold), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      left: 0.4rem;
+      top: 0.4rem;
+      border: 4px solid #fff;
+      background: var(--rose-bold);
+      box-shadow: 0 0 0 3px rgba(216, 134, 176, 0.2);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .gallery-card {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 220px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    .gallery-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(46, 31, 39, 0.45));
+    }
+
+    .gallery-card span {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .cta {
+      padding: 3rem;
+      border-radius: 32px;
+      background: linear-gradient(140deg, rgba(255, 247, 240, 0.95), rgba(246, 214, 224, 0.9));
+      border: 1px solid rgba(122, 76, 92, 0.15);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 0;
+      color: rgba(46, 31, 39, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="row justify-content-start">
+        <div class="col-lg-6 col-xl-5">
+          <div class="hero-content hero-panel">
+            <p class="accent-pill">Val Gardena · Dolomites</p>
+            <h1>Holidays in Val Gardena / Dolomites</h1>
+            <p class="lead mb-3">Pale Dolomite giants carve a dreamlike backdrop for active days in nature. Base yourself in Val Gardena to reach Sellaronda ski runs, UNESCO terraces, and Ladin villages in one sweeping view.</p>
+            <p class="mb-4">From spa hotels in Ortisei to family chalets in Selva, every stay opens the door to 250-million-year-old coral reefs that now glow rose at sunset.</p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#gallery" class="btn btn-rose">See the Peaks</a>
+              <a href="#plan" class="btn btn-rose-outline">Plan Arrival</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section id="highlights">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">⛰️</div>
+            <h4>UNESCO Peaks</h4>
+            <p>Nine Dolomite systems, from Sassolungo to Marmolada, showcase fossilized coral reefs that earned World Heritage status.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">🚠</div>
+            <h4>Stay Your Way</h4>
+            <p>Pick spa resorts in Ortisei, design lodges in Santa Cristina, or chalets in Selva—each within minutes of panoramic lifts.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">🥂</div>
+            <h4>All-season Playground</h4>
+            <p>Summer trails, climbing walls, bike loops, and winter’s 1,200 km of Dolomiti Superski pistes keep every itinerary fresh.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon">🧘</div>
+            <h4>Culture & Flavors</h4>
+            <p>Ladin heritage, South Tyrolean cuisine, and village festivals bring heartfelt hospitality to every mountain meal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="impressions">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <div class="glass p-4 p-lg-5">
+            <p class="accent-pill mb-3">Dolomite Light Stories</p>
+            <h2 class="mb-3">The pale mountains up close</h2>
+            <p>These formations are 250 million-year-old coral reefs lifted skyward when the Adriatic met the Eurasian plate. Their fossilized faces glow cream at dawn and blush rose at dusk, turning every stop into a front-row seat.</p>
+            <p class="mb-4">Villages like Ortisei and Santa Cristina balance art, design, and the Ladin language, while nearby meadows stay family-friendly with playgrounds, trails, and outdoor concerts all season.</p>
+            <div class="d-flex gap-4 flex-wrap mt-4">
+              <div>
+                <h3 class="display-6 mb-0">9</h3>
+                <small>UNESCO Dolomite systems</small>
+              </div>
+              <div>
+                <h3 class="display-6 mb-0">1,200 km</h3>
+                <small>Dolomiti Superski pistes</small>
+              </div>
+              <div>
+                <h3 class="display-6 mb-0">4</h3>
+                <small>protected nature parks</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="impressions-grid">
+            <div class="photo-card" data-label="Dolomite Skyline" style="background-image:url('https://cdn.britannica.com/00/188300-050-972ACBFB/Dolomites-Italian-Alps.jpg');"></div>
+            <div class="photo-card" data-label="Seceda Ridge" style="background-image:url('https://traveltipzone.com/wp-content/uploads/traveltipzone.com-10-most-beautiful-photo-points-in-the-dolomites-dscf1905-kisebb.jpg');"></div>
+            <div class="photo-card" data-label="Tre Cime Traverse" style="background-image:url('https://annaeverywhere.com/wp-content/uploads/2022/11/best-hikes-Dolomites-2.png');"></div>
+            <div class="photo-card" data-label="Lago di Braies" style="background-image:url('https://wildlandtrekking.com/content/uploads/2022/10/Dolomites-boats.png');"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plan">
+      <div class="row g-5">
+        <div class="col-lg-6">
+          <div class="glass p-4 p-lg-5">
+            <p class="accent-pill mb-3">Seasonal Flow</p>
+            <h2 class="mb-4">Pick the perfect pastel season</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h5>May – June · Crocus Bloom</h5>
+                <p>Alpe di Siusi becomes a lilac sea of crocuses, secret lagoons appear, and calm trails invite reflective walks.</p>
+              </div>
+              <div class="timeline-item">
+                <h5>July – September · High Trails & Huts</h5>
+                <p>Ten high routes, the UNESCO Geotrail, and lively rifugi make summer a playground for hikers, bikers, and climbers.</p>
+              </div>
+              <div class="timeline-item">
+                <h5>October · Golden Larches</h5>
+                <p>Val Gardena’s meadows blaze amber, festivals fill village squares, and photographers chase the legendary Alpenglow.</p>
+              </div>
+              <div class="timeline-item">
+                <h5>December – March · Legendary Slopes</h5>
+                <p>Sellaronda laps, Dolomiti Superski’s 1,200 km of runs, and snowshoe tours show why winter sports fans revere these peaks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="cta h-100 d-flex flex-column justify-content-between gap-4">
+            <div>
+              <p class="accent-pill mb-3">Book your holidays</p>
+              <h3 class="mb-3">Set arrival, pick guests, find your stay</h3>
+              <p>Share your travel window and we’ll match you with accommodations in Ortisei, Santa Cristina, or Selva—whether you want wellness retreats, family hotels, or slope-side lodges.</p>
+            </div>
+            <form class="row gy-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label text-uppercase small">Arrival</label>
+                <input type="date" class="form-control form-control-lg border-0" required>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label text-uppercase small">Departure</label>
+                <input type="date" class="form-control form-control-lg border-0" required>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label text-uppercase small">Guests</label>
+                <select class="form-select form-select-lg border-0" required>
+                  <option selected disabled>Choose guests</option>
+                  <option>Solo traveler</option>
+                  <option>Couple</option>
+                  <option>Family (3-4)</option>
+                  <option>Group (5+)</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label text-uppercase small">Contact</label>
+                <input type="email" class="form-control form-control-lg border-0" placeholder="Email address" required>
+              </div>
+              <div class="col-12 d-grid">
+                <button type="submit" class="btn btn-rose">Check availability</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="text-center mb-4">
+        <p class="accent-pill mb-2">Visual Diary</p>
+        <h2>Snapshots from Val Gardena & beyond</h2>
+        <p class="mt-3 mb-0">These views trace a circuit from Seceda’s crest to Sellaronda slopes—proof that mirrored lakes, storybook villages, and ski lines live side by side.</p>
+      </div>
+      <div class="gallery-grid">
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://traveltipzone.com/wp-content/uploads/traveltipzone.com-10-most-beautiful-photo-points-in-the-dolomites-dscf1905-kisebb.jpg');" data-image="https://traveltipzone.com/wp-content/uploads/traveltipzone.com-10-most-beautiful-photo-points-in-the-dolomites-dscf1905-kisebb.jpg" data-label="Seceda Crest">
+          <span>Seceda Crest</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://annaeverywhere.com/wp-content/uploads/2022/11/best-hikes-Dolomites-2.png');" data-image="https://annaeverywhere.com/wp-content/uploads/2022/11/best-hikes-Dolomites-2.png" data-label="Tre Cime Path">
+          <span>Tre Cime Path</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://wildlandtrekking.com/content/uploads/2022/10/Dolomites-boats.png');" data-image="https://wildlandtrekking.com/content/uploads/2022/10/Dolomites-boats.png" data-label="Braies Boats">
+          <span>Braies Boats</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://www.okvoyage.com/wp-content/uploads/2024/01/castelrotto-dans-les-villages-des-dolomites-1024x683.jpg');" data-image="https://www.okvoyage.com/wp-content/uploads/2024/01/castelrotto-dans-les-villages-des-dolomites-1024x683.jpg" data-label="Castelrotto Streets">
+          <span>Castelrotto Streets</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://successtours.s3.amazonaws.com/web/locations/Italy/Dolomites/_2000xAUTO_crop_center-center_90_none/amazing-scenery-of-Dolomites-Italian-Alps-View-with-village-Ma.jpg');" data-image="https://successtours.s3.amazonaws.com/web/locations/Italy/Dolomites/_2000xAUTO_crop_center-center_90_none/amazing-scenery-of-Dolomites-Italian-Alps-View-with-village-Ma.jpg" data-label="Val Gardena Vista">
+          <span>Val Gardena Vista</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://static01.nyt.com/images/2019/11/14/travel/00Dolomites-Ski12/00Dolomites-Ski12-videoSixteenByNineJumbo1600.jpg');" data-image="https://static01.nyt.com/images/2019/11/14/travel/00Dolomites-Ski12/00Dolomites-Ski12-videoSixteenByNineJumbo1600.jpg" data-label="Alta Badia Slopes">
+          <span>Alta Badia Slopes</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY8avvH3yiLrQygiw6ZWscERPhDyPqNpa3w&s');" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY8avvH3yiLrQygiw6ZWscERPhDyPqNpa3w&s" data-label="Passo Giau Vista">
+          <span>Passo Giau Vista</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_862/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/tsayip97woexrsgg8hm8/Dolomites,LakeMisurina,andCortinaTripfromVenice.jpg');" data-image="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_862/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/tsayip97woexrsgg8hm8/Dolomites,LakeMisurina,andCortinaTripfromVenice.jpg" data-label="Lake Misurina">
+          <span>Lake Misurina</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTICA_aGkFYnygcKYjg0LQvLYTg8yOUAxObkk89tTIUty37IAhvDNbcX55miFpucNCVITs&usqp=CAU');" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTICA_aGkFYnygcKYjg0LQvLYTg8yOUAxObkk89tTIUty37IAhvDNbcX55miFpucNCVITs&usqp=CAU" data-label="Cortina Outlook">
+          <span>Cortina Outlook</span>
+        </button>
+        <button type="button" class="gallery-card border-0 p-0 w-100" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLWYmJwa7nKNpcHKCFPegST-i0cz4n3i46KAdJol3zg64tnMjcYKIonKXz1hvqIIqAxQw&usqp=CAU');" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLWYmJwa7nKNpcHKCFPegST-i0cz4n3i46KAdJol3zg64tnMjcYKIonKXz1hvqIIqAxQw&usqp=CAU" data-label="Dolomite Sunset">
+          <span>Dolomite Sunset</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content border-0" style="background: rgba(10, 10, 10, 0.92);">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="galleryModalLabel">Dolomites</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="galleryModalImage" src="" alt="" class="img-fluid rounded-3 w-100">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <small>© <span id="year"></span> Dolomites Italy · Soft modern alpine escapes</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const galleryModalEl = document.getElementById("galleryModal");
+    const galleryModalImage = document.getElementById("galleryModalImage");
+    const galleryModalLabel = document.getElementById("galleryModalLabel");
+
+    document.querySelectorAll(".gallery-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const image = card.getAttribute("data-image");
+        const label = card.getAttribute("data-label");
+        galleryModalImage.src = image;
+        galleryModalImage.alt = label;
+        galleryModalLabel.textContent = label;
+        const modal = bootstrap.Modal.getOrCreateInstance(galleryModalEl);
+        modal.show();
+      });
+    });
+  </script>
+</body>
+</html>
